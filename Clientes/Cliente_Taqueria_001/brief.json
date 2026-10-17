@@ -1,0 +1,18 @@
+{
+  "id_cliente": "cliente_001",
+  "nombre_empresa": "Tacos El Pastor Queretano",
+  "giro": "Taquería y Restaurante Mexicano",
+  "ubicacion": "Juriquilla, Querétaro",
+  "paquete": "Pro",
+  "colores_marca": ["#D32F2F", "#FFB300", "#1A1A1A"],
+  "objetivo": "Aumentar ventas de e-commerce/pedidos locales y visitas el fin de semana",
+  "redes": {
+    "instagram": "@tacoselpastorqro",
+    "facebook": "/tacoselpastorqueretaro"
+  },
+  "productos_estrella": [
+    {"nombre": "Orden de Tacos al Pastor (5 pzs)", "precio": "$110 MXN"},
+    {"nombre": "Gringa Especial con Queso Gouda", "precio": "$85 MXN"},
+    {"nombre": "Agua de Horchata Artesanal 1L", "precio": "$45 MXN"}
+  ]
+}
