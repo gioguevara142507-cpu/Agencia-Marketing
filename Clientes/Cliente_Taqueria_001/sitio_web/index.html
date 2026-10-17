@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es-MX" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tacos El Pastor Queretano | Taquería en Juriquilla, Querétaro</title>
+  <meta name="description" content="Los tacos al pastor más queridos de Juriquilla. Pide en línea, recoge en el local o recibe a domicilio en Querétaro. Pedidos por WhatsApp, Rappi y Uber Eats." />
+  <meta name="theme-color" content="#D32F2F" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tacos El Pastor Queretano | Juriquilla, QRO" />
+  <meta property="og:description" content="¿Buscando dónde comer en Juriquilla? Tacos al pastor al trompo, gringas y horchata artesanal. Pide en línea." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_MX" />
+
+  <!-- Datos estructurados para Google (negocio local) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Tacos El Pastor Queretano",
+    "servesCuisine": "Mexicana, Tacos",
+    "priceRange": "$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Juriquilla",
+      "addressRegion": "Querétaro",
+      "addressCountry": "MX"
+    },
+    "sameAs": [
+      "https://www.instagram.com/tacoselpastorqro",
+      "https://www.facebook.com/tacoselpastorqueretaro"
+    ]
+  }
+  </script>
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (window.tailwind) tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            salsa: { DEFAULT: '#D32F2F', dark: '#B71C1C', light: '#EF5350' },
+            pina:  { DEFAULT: '#FFB300', dark: '#FF8F00', light: '#FFD54F' },
+            carbon:{ DEFAULT: '#1A1A1A', soft: '#262626', line: '#333333' },
+            crema: '#FFF8EC'
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            sans: ['Poppins', 'sans-serif']
+          },
+          keyframes: {
+            blob: {
+              '0%,100%': { transform: 'translate(0,0) scale(1)' },
+              '33%': { transform: 'translate(40px,-30px) scale(1.1)' },
+              '66%': { transform: 'translate(-30px,20px) scale(0.95)' }
+            },
+            flotar: {
+              '0%,100%': { transform: 'translateY(0) rotate(-4deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(3deg)' }
+            },
+            brinco: {
+              '0%,100%': { transform: 'scale(1)' },
+              '40%': { transform: 'scale(1.45)' },
+              '70%': { transform: 'scale(0.9)' }
+            },
+            marquesina: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' }
+            },
+            brillo: {
+              '0%,100%': { boxShadow: '0 0 0 0 rgba(255,179,0,0.55)' },
+              '50%': { boxShadow: '0 0 28px 6px rgba(255,179,0,0.35)' }
+            }
+          },
+          animation: {
+            blob: 'blob 12s ease-in-out infinite',
+            flotar: 'flotar 5s ease-in-out infinite',
+            brinco: 'brinco 0.5s ease-out',
+            marquesina: 'marquesina 28s linear infinite',
+            brillo: 'brillo 2.4s ease-in-out infinite'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- AOS: animaciones al hacer scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .texto-gradiente {
+      background: linear-gradient(90deg, #FFB300, #FF8F00, #D32F2F, #FFB300);
+      background-size: 300% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: degradado 6s ease infinite;
+    }
+    @keyframes degradado { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .vidrio { background: rgba(26,26,26,0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .patron-papel {
+      background-image: radial-gradient(rgba(255,179,0,0.12) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .papel-picado {
+      background:
+        linear-gradient(135deg, transparent 75%, #1A1A1A 75%) 0 0 / 22px 22px,
+        linear-gradient(225deg, transparent 75%, #1A1A1A 75%) 0 0 / 22px 22px;
+    }
+    .item-volador {
+      position: fixed; z-index: 80; pointer-events: none; font-size: 2rem;
+      transition: transform 0.75s cubic-bezier(.5,-0.3,.7,1.2), opacity 0.75s ease;
+    }
+    #carrito.abierto { transform: translateX(0); }
+    #fondo-carrito.abierto, #fondo-modal.abierto { opacity: 1; pointer-events: auto; }
+    .faq-respuesta { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+    .faq-item.abierto .faq-respuesta { grid-template-rows: 1fr; }
+    .faq-item.abierto .faq-icono { transform: rotate(45deg); }
+    .filtro.activo { background: #FFB300; color: #1A1A1A; border-color: #FFB300; }
+    input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) { border-color: #EF5350; }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-thumb { background: #D32F2F; border-radius: 8px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-carbon text-crema antialiased overflow-x-hidden">
+
+  <!-- ===================== LOADER ===================== -->
+  <div id="loader" class="fixed inset-0 z-[100] bg-carbon flex flex-col items-center justify-center transition-opacity duration-500">
+    <div class="text-6xl animate-bounce">🌮</div>
+    <p class="mt-4 font-display text-3xl tracking-widest text-pina">Prendiendo el trompo…</p>
+  </div>
+
+  <!-- ===================== BARRA PROMO ===================== -->
+  <div class="bg-pina text-carbon text-sm font-semibold overflow-hidden whitespace-nowrap">
+    <div class="inline-flex animate-marquesina py-2">
+      <span class="px-8">🔥 Fin de semana en QRO: 2x1 en aguas de horchata viernes a domingo</span>
+      <span class="px-8">🛵 Envío GRATIS en Juriquilla en pedidos desde $350</span>
+      <span class="px-8">📍 Estamos en Juriquilla, Querétaro</span>
+      <span class="px-8">💬 Pide por WhatsApp y recoge sin filas</span>
+      <span class="px-8">🔥 Fin de semana en QRO: 2x1 en aguas de horchata viernes a domingo</span>
+      <span class="px-8">🛵 Envío GRATIS en Juriquilla en pedidos desde $350</span>
+      <span class="px-8">📍 Estamos en Juriquilla, Querétaro</span>
+      <span class="px-8">💬 Pide por WhatsApp y recoge sin filas</span>
+    </div>
+  </div>
+
+  <!-- ===================== NAVEGACIÓN ===================== -->
+  <header id="nav" class="sticky top-0 z-50 vidrio border-b border-white/5 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#inicio" class="flex items-center gap-2 group">
+        <span class="w-10 h-10 rounded-full bg-salsa grid place-items-center text-xl group-hover:rotate-12 transition-transform duration-300">🌮</span>
+        <span class="leading-none">
+          <span class="block font-display text-2xl tracking-wide">El Pastor <span class="text-pina">Queretano</span></span>
+          <span class="block text-[10px] uppercase tracking-[0.25em] text-crema/60">Taquería · Juriquilla</span>
+        </span>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <li><a href="#menu" class="hover:text-pina transition-colors">Menú</a></li>
+        <li><a href="#promos" class="hover:text-pina transition-colors">Promos</a></li>
+        <li><a href="#opiniones" class="hover:text-pina transition-colors">Opiniones</a></li>
+        <li><a href="#ubicacion" class="hover:text-pina transition-colors">Ubicación</a></li>
+        <li><a href="#faq" class="hover:text-pina transition-colors">Preguntas</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <a href="#menu" class="hidden sm:inline-flex items-center gap-2 bg-salsa hover:bg-salsa-dark px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-salsa/40">Pedir ahora</a>
+        <button id="btn-abrir-carrito" aria-label="Abrir carrito" class="relative w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 grid place-items-center transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span id="contador-carrito" class="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-pina text-carbon text-xs font-bold grid place-items-center hidden">0</span>
+        </button>
+        <button id="btn-menu-movil" aria-label="Abrir menú" class="md:hidden w-11 h-11 rounded-full bg-white/10 grid place-items-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="menu-movil" class="md:hidden hidden border-t border-white/5 px-4 pb-4">
+      <a href="#menu" class="block py-3 border-b border-white/5">Menú</a>
+      <a href="#promos" class="block py-3 border-b border-white/5">Promos</a>
+      <a href="#opiniones" class="block py-3 border-b border-white/5">Opiniones</a>
+      <a href="#ubicacion" class="block py-3 border-b border-white/5">Ubicación</a>
+      <a href="#faq" class="block py-3">Preguntas</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section id="inicio" class="relative min-h-[92vh] flex items-center overflow-hidden patron-papel">
+      <!-- Blobs animados -->
+      <div class="absolute -top-24 -left-24 w-96 h-96 bg-salsa/40 rounded-full blur-3xl animate-blob"></div>
+      <div class="absolute top-1/3 -right-20 w-[28rem] h-[28rem] bg-pina/25 rounded-full blur-3xl animate-blob" style="animation-delay:-4s"></div>
+      <div class="absolute -bottom-32 left-1/3 w-80 h-80 bg-salsa-dark/40 rounded-full blur-3xl animate-blob" style="animation-delay:-8s"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <span class="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-4 py-1.5 text-sm">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            <span id="estado-abierto">Abierto hoy · Juriquilla, QRO</span>
+          </span>
+          <h1 class="mt-6 font-display text-6xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-wide">
+            Si estás en Querétaro,<br />
+            <span class="texto-gradiente">tienes que probar</span><br />
+            <span id="texto-rotativo" class="inline-block text-crema transition-all duration-500">el pastor al trompo</span>
+          </h1>
+          <p class="mt-6 text-lg text-crema/75 max-w-xl">
+            Carne marinada 24 horas, piña asada y tortilla recién hecha. El plan para el fin de semana en QRO ya tiene sabor: pide en línea y recoge sin filas o recíbelo en tu casa.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#menu" class="inline-flex items-center gap-2 bg-pina text-carbon px-7 py-3.5 rounded-full font-bold text-lg animate-brillo hover:scale-105 transition-transform duration-300">
+              🛒 Armar mi pedido
+            </a>
+            <a href="#" data-whatsapp="Hola, quiero hacer un pedido en Tacos El Pastor Queretano 🌮" class="inline-flex items-center gap-2 bg-[#25D366] text-carbon px-7 py-3.5 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+          <div class="mt-6 flex flex-wrap items-center gap-3 text-sm text-crema/70">
+            <span>También en:</span>
+            <a href="#" data-enlace="rappi" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full bg-[#FF441F] text-white font-semibold hover:opacity-90 transition">Rappi</a>
+            <a href="#" data-enlace="ubereats" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full bg-[#06C167] text-carbon font-semibold hover:opacity-90 transition">Uber Eats</a>
+            <a href="#ubicacion" class="px-3 py-1.5 rounded-full bg-white/10 font-semibold hover:bg-white/20 transition">📍 Google Maps</a>
+          </div>
+          <div class="mt-10 grid grid-cols-3 gap-4 max-w-md">
+            <div><p class="font-display text-4xl text-pina" data-contador="4.9">0</p><p class="text-xs text-crema/60">Calificación en Google</p></div>
+            <div><p class="font-display text-4xl text-pina" data-contador="24" data-sufijo=" h">0</p><p class="text-xs text-crema/60">Marinado del pastor</p></div>
+            <div><p class="font-display text-4xl text-pina" data-contador="25" data-sufijo=" min">0</p><p class="text-xs text-crema/60">Entrega en Juriquilla</p></div>
+          </div>
+        </div>
+
+        <!-- Ilustración del trompo -->
+        <div class="relative flex justify-center" data-aos="zoom-in" data-aos-delay="150">
+          <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-salsa via-salsa-dark to-carbon shadow-2xl shadow-salsa/40"></div>
+            <div class="absolute inset-6 rounded-full border-2 border-dashed border-pina/40 animate-[spin_30s_linear_infinite]"></div>
+            <div class="absolute inset-0 grid place-items-center text-[9rem] sm:text-[12rem] animate-flotar select-none">🌮</div>
+            <div class="absolute -top-2 right-2 bg-pina text-carbon rounded-2xl px-4 py-2 rotate-6 shadow-xl">
+              <p class="text-xs font-semibold">Orden de 5</p>
+              <p class="font-display text-3xl leading-none">$110</p>
+            </div>
+            <div class="absolute bottom-6 -left-6 bg-crema text-carbon rounded-2xl px-4 py-3 -rotate-6 shadow-xl">
+              <p class="text-sm font-bold">🍍 Con piña asada</p>
+              <p class="text-xs text-carbon/70">como debe ser</p>
+            </div>
+            <div class="absolute -bottom-4 right-4 bg-carbon border border-white/15 rounded-full px-4 py-2 text-sm font-semibold shadow-xl">📍 Querétaro</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#menu" aria-label="Bajar al menú" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center text-crema/60 text-xs gap-1">
+        <span>Desliza</span>
+        <span class="w-6 h-10 rounded-full border-2 border-crema/40 flex justify-center pt-2"><span class="w-1 h-2 bg-pina rounded-full animate-bounce"></span></span>
+      </a>
+    </section>
+
+    <!-- ===================== BENEFICIOS ===================== -->
+    <section class="bg-salsa">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div data-aos="fade-up"><p class="text-3xl">🔥</p><p class="font-semibold mt-1">Trompo al carbón</p></div>
+        <div data-aos="fade-up" data-aos-delay="80"><p class="text-3xl">🫓</p><p class="font-semibold mt-1">Tortilla hecha al momento</p></div>
+        <div data-aos="fade-up" data-aos-delay="160"><p class="text-3xl">🛵</p><p class="font-semibold mt-1">Domicilio en Juriquilla</p></div>
+        <div data-aos="fade-up" data-aos-delay="240"><p class="text-3xl">💳</p><p class="font-semibold mt-1">Tarjeta, efectivo o Mercado Pago</p></div>
+      </div>
+    </section>
+
+    <!-- ===================== MENÚ / CATÁLOGO ===================== -->
+    <section id="menu" class="py-20 sm:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <p class="text-pina font-semibold uppercase tracking-[0.3em] text-sm">Menú en línea</p>
+          <h2 class="mt-3 font-display text-5xl sm:text-6xl tracking-wide">¿Buscando dónde comer en Juriquilla?</h2>
+          <p class="mt-4 text-crema/70">Agrega tus favoritos al carrito y te lo preparamos al momento. Los más pedidos están marcados con ⭐.</p>
+        </div>
+
+        <div class="mt-10 flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="100">
+          <button class="filtro activo px-5 py-2 rounded-full border border-white/15 text-sm font-semibold transition-all duration-300" data-filtro="todos">Todo</button>
+          <button class="filtro px-5 py-2 rounded-full border border-white/15 text-sm font-semibold transition-all duration-300 hover:border-pina" data-filtro="tacos">Tacos</button>
+          <button class="filtro px-5 py-2 rounded-full border border-white/15 text-sm font-semibold transition-all duration-300 hover:border-pina" data-filtro="especialidades">Especialidades</button>
+          <button class="filtro px-5 py-2 rounded-full border border-white/15 text-sm font-semibold transition-all duration-300 hover:border-pina" data-filtro="bebidas">Bebidas</button>
+          <button class="filtro px-5 py-2 rounded-full border border-white/15 text-sm font-semibold transition-all duration-300 hover:border-pina" data-filtro="combos">Combos</button>
+        </div>
+
+        <div id="grid-productos" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ===================== PROMO FIN DE SEMANA ===================== -->
+    <section id="promos" class="py-20 bg-gradient-to-br from-pina via-pina-dark to-salsa text-carbon relative overflow-hidden">
+      <div class="absolute inset-x-0 top-0 h-6 papel-picado opacity-90"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
+        <div data-aos="fade-right">
+          <span class="inline-block bg-carbon text-pina px-4 py-1 rounded-full text-sm font-bold">Solo viernes, sábado y domingo</span>
+          <h2 class="mt-4 font-display text-6xl sm:text-7xl leading-none">Plan para el fin de semana en QRO</h2>
+          <p class="mt-4 text-lg font-medium max-w-lg">Combo Familiar: 3 órdenes de pastor, 1 gringa especial y 2 litros de horchata. Alcanza para 4 y te ahorras $90.</p>
+          <div class="mt-6 flex items-end gap-4">
+            <span class="font-display text-7xl">$425</span>
+            <span class="text-2xl line-through opacity-60 mb-2">$515</span>
+          </div>
+          <button data-agregar="combo-familiar" class="mt-6 inline-flex items-center gap-2 bg-carbon text-crema px-7 py-3.5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-2xl transition-all duration-300">
+            🛒 Agregar combo al carrito
+          </button>
+        </div>
+        <div data-aos="fade-left" class="grid grid-cols-2 gap-4">
+          <div class="bg-carbon/90 text-crema rounded-3xl p-6 hover:-translate-y-1 transition-transform duration-300">
+            <p class="text-4xl">🥤</p>
+            <p class="mt-2 font-display text-3xl text-pina">2x1</p>
+            <p class="text-sm text-crema/70">En horchata artesanal de 1 L todo el fin</p>
+          </div>
+          <div class="bg-carbon/90 text-crema rounded-3xl p-6 hover:-translate-y-1 transition-transform duration-300 mt-8">
+            <p class="text-4xl">🛵</p>
+            <p class="mt-2 font-display text-3xl text-pina">Envío gratis</p>
+            <p class="text-sm text-crema/70">En Juriquilla desde $350 de pedido</p>
+          </div>
+          <div class="bg-carbon/90 text-crema rounded-3xl p-6 hover:-translate-y-1 transition-transform duration-300">
+            <p class="text-4xl">📸</p>
+            <p class="mt-2 font-display text-3xl text-pina">Taco gratis</p>
+            <p class="text-sm text-crema/70">Sube tu foto y etiqueta a @tacoselpastorqro</p>
+          </div>
+          <div class="bg-carbon/90 text-crema rounded-3xl p-6 hover:-translate-y-1 transition-transform duration-300 mt-8">
+            <p class="text-4xl">⏰</p>
+            <p class="mt-2 font-display text-3xl text-pina" id="cuenta-regresiva">--:--:--</p>
+            <p class="text-sm text-crema/70" id="texto-cuenta">para que arranque la promo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CÓMO PEDIR ===================== -->
+    <section class="py-20 sm:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 class="text-center font-display text-5xl sm:text-6xl tracking-wide" data-aos="fade-up">Pedir es así de fácil</h2>
+        <div class="mt-12 grid md:grid-cols-3 gap-6">
+          <div class="relative bg-carbon-soft border border-white/5 rounded-3xl p-8 hover:border-pina/50 transition-colors duration-300" data-aos="fade-up">
+            <span class="absolute -top-5 left-8 w-10 h-10 rounded-full bg-salsa grid place-items-center font-display text-2xl">1</span>
+            <p class="text-4xl mt-2">🌮</p>
+            <h3 class="mt-4 text-xl font-bold">Arma tu pedido</h3>
+            <p class="mt-2 text-crema/70">Elige del menú y agrega al carrito. Puedes dejar notas como “sin cebolla” o “salsa aparte”.</p>
+          </div>
+          <div class="relative bg-carbon-soft border border-white/5 rounded-3xl p-8 hover:border-pina/50 transition-colors duration-300" data-aos="fade-up" data-aos-delay="100">
+            <span class="absolute -top-5 left-8 w-10 h-10 rounded-full bg-salsa grid place-items-center font-display text-2xl">2</span>
+            <p class="text-4xl mt-2">💬</p>
+            <h3 class="mt-4 text-xl font-bold">Confirma por WhatsApp</h3>
+            <p class="mt-2 text-crema/70">Tu pedido llega directo a nuestro WhatsApp Business. Si eliges Mercado Pago, te mandamos tu liga de pago segura.</p>
+          </div>
+          <div class="relative bg-carbon-soft border border-white/5 rounded-3xl p-8 hover:border-pina/50 transition-colors duration-300" data-aos="fade-up" data-aos-delay="200">
+            <span class="absolute -top-5 left-8 w-10 h-10 rounded-full bg-salsa grid place-items-center font-display text-2xl">3</span>
+            <p class="text-4xl mt-2">🛵</p>
+            <h3 class="mt-4 text-xl font-bold">Recoge o recibe</h3>
+            <p class="mt-2 text-crema/70">Pasa por él sin hacer fila o te lo llevamos a Juriquilla, Jurica, Zibatá y El Refugio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== OPINIONES ===================== -->
+    <section id="opiniones" class="py-20 bg-carbon-soft">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center" data-aos="fade-up">
+          <p class="text-pina font-semibold uppercase tracking-[0.3em] text-sm">Lo que dicen en Querétaro</p>
+          <h2 class="mt-3 font-display text-5xl sm:text-6xl tracking-wide">Los queretanos ya lo probaron</h2>
+        </div>
+        <!-- Nota para la agencia: reemplazar con reseñas reales de Google del cliente antes de publicar -->
+        <div class="mt-12 grid md:grid-cols-3 gap-6">
+          <figure class="bg-carbon rounded-3xl p-7 border border-white/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-salsa/10 transition-all duration-300" data-aos="fade-up">
+            <p class="text-pina">★★★★★</p>
+            <blockquote class="mt-3 text-crema/85">“El pastor con piña asada está buenísimo y la horchata sabe a casera. Ya es nuestro plan de cada sábado en Juriquilla.”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-salsa grid place-items-center font-bold">MF</span><span><span class="block font-semibold">Mariana F.</span><span class="text-xs text-crema/60">Juriquilla</span></span></figcaption>
+          </figure>
+          <figure class="bg-carbon rounded-3xl p-7 border border-white/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-salsa/10 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <p class="text-pina">★★★★★</p>
+            <blockquote class="mt-3 text-crema/85">“Pedí por WhatsApp y en 25 minutos estaba en mi casa en Jurica, todo calientito. La gringa con gouda es otro nivel.”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-pina text-carbon grid place-items-center font-bold">JR</span><span><span class="block font-semibold">Jorge R.</span><span class="text-xs text-crema/60">Jurica</span></span></figcaption>
+          </figure>
+          <figure class="bg-carbon rounded-3xl p-7 border border-white/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-salsa/10 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-pina">★★★★★</p>
+            <blockquote class="mt-3 text-crema/85">“Si estás en Querétaro tienes que venir. Las salsas son de la casa y el combo familiar nos alcanzó perfecto para cuatro.”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-salsa grid place-items-center font-bold">AL</span><span><span class="block font-semibold">Ana L.</span><span class="text-xs text-crema/60">Zibatá</span></span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== UBICACIÓN ===================== -->
+    <section id="ubicacion" class="py-20 sm:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
+        <div data-aos="fade-right">
+          <p class="text-pina font-semibold uppercase tracking-[0.3em] text-sm">Visítanos</p>
+          <h2 class="mt-3 font-display text-5xl sm:text-6xl tracking-wide">Te esperamos en Juriquilla</h2>
+          <ul class="mt-6 space-y-4 text-crema/80">
+            <li class="flex gap-3"><span class="text-2xl">📍</span><span><strong class="text-crema">Juriquilla, Querétaro, Qro.</strong><br /><span class="text-sm">A unos minutos de Antea y el Club de Golf Juriquilla</span></span></li>
+            <li class="flex gap-3"><span class="text-2xl">🕒</span><span><strong class="text-crema">Martes a domingo</strong><br /><span class="text-sm">Mar a Jue 6:00 pm – 12:00 am · Vie y Sáb 1:00 pm – 2:00 am · Dom 1:00 pm – 11:00 pm</span></span></li>
+            <li class="flex gap-3"><span class="text-2xl">🛵</span><span><strong class="text-crema">Zona de entrega</strong><br /><span class="text-sm">Juriquilla, Jurica, Zibatá, El Refugio y Real de Juriquilla</span></span></li>
+          </ul>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#" data-enlace="maps" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-salsa hover:bg-salsa-dark px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-salsa/40">📍 Cómo llegar</a>
+            <a href="#" data-whatsapp="Hola, ¿tienen lugar disponible hoy? 🌮" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 px-6 py-3 rounded-full font-semibold transition-colors">💬 Preguntar por WhatsApp</a>
+          </div>
+        </div>
+        <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-80 sm:h-[26rem]" data-aos="fade-left">
+          <iframe title="Mapa de Tacos El Pastor Queretano en Juriquilla" class="w-full h-full grayscale-[30%]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Juriquilla,+Quer%C3%A9taro&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="py-20 bg-carbon-soft">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <h2 class="text-center font-display text-5xl sm:text-6xl tracking-wide" data-aos="fade-up">Preguntas frecuentes</h2>
+        <div class="mt-10 space-y-3" id="lista-faq">
+          <div class="faq-item bg-carbon rounded-2xl border border-white/5" data-aos="fade-up">
+            <button class="faq-boton w-full flex justify-between items-center gap-4 text-left px-6 py-5 font-semibold">¿Hasta dónde llevan a domicilio?<span class="faq-icono text-pina text-2xl transition-transform duration-300">+</span></button>
+            <div class="faq-respuesta"><div class="overflow-hidden"><p class="px-6 pb-5 text-crema/70">Entregamos en Juriquilla, Jurica, Zibatá, El Refugio y Real de Juriquilla. Para otras zonas de Querétaro puedes pedir por Rappi o Uber Eats.</p></div></div>
+          </div>
+          <div class="faq-item bg-carbon rounded-2xl border border-white/5" data-aos="fade-up">
+            <button class="faq-boton w-full flex justify-between items-center gap-4 text-left px-6 py-5 font-semibold">¿Cuánto cuesta el envío?<span class="faq-icono text-pina text-2xl transition-transform duration-300">+</span></button>
+            <div class="faq-respuesta"><div class="overflow-hidden"><p class="px-6 pb-5 text-crema/70">El envío cuesta $35 y es gratis en pedidos desde $350. Si pasas a recoger, no pagas envío.</p></div></div>
+          </div>
+          <div class="faq-item bg-carbon rounded-2xl border border-white/5" data-aos="fade-up">
+            <button class="faq-boton w-full flex justify-between items-center gap-4 text-left px-6 py-5 font-semibold">¿Qué formas de pago aceptan?<span class="faq-icono text-pina text-2xl transition-transform duration-300">+</span></button>
+            <div class="faq-respuesta"><div class="overflow-hidden"><p class="px-6 pb-5 text-crema/70">Efectivo, tarjeta con terminal al entregar y Mercado Pago. Si eliges Mercado Pago te enviamos una liga de pago segura por WhatsApp; nunca te pediremos datos de tu tarjeta en este sitio.</p></div></div>
+          </div>
+          <div class="faq-item bg-carbon rounded-2xl border border-white/5" data-aos="fade-up">
+            <button class="faq-boton w-full flex justify-between items-center gap-4 text-left px-6 py-5 font-semibold">¿Hacen pedidos para fiestas o eventos?<span class="faq-icono text-pina text-2xl transition-transform duration-300">+</span></button>
+            <div class="faq-respuesta"><div class="overflow-hidden"><p class="px-6 pb-5 text-crema/70">¡Claro! Llevamos taquiza con trompo para cumpleaños, reuniones y eventos en Querétaro. Escríbenos por WhatsApp con al menos 3 días de anticipación.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="py-20 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-salsa-dark via-salsa to-salsa-dark"></div>
+      <div class="absolute -right-10 -bottom-10 text-[14rem] opacity-15 select-none animate-flotar">🌮</div>
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center" data-aos="zoom-in">
+        <h2 class="font-display text-6xl sm:text-7xl leading-none">¿Ya se te antojó?</h2>
+        <p class="mt-4 text-lg text-crema/85">El trompo ya está girando. Haz tu pedido y en minutos lo tienes.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="#menu" class="bg-pina text-carbon px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">🛒 Pedir en línea</a>
+          <a href="#" data-whatsapp="Hola, quiero hacer un pedido en Tacos El Pastor Queretano 🌮" class="bg-carbon text-crema px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">💬 WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-black/60 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <p class="font-display text-3xl">El Pastor <span class="text-pina">Queretano</span></p>
+        <p class="mt-2 text-crema/60">Tacos al pastor al trompo en Juriquilla, Querétaro. Hechos con orgullo queretano.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-crema">Síguenos</p>
+        <div class="mt-3 flex gap-3">
+          <a href="https://www.instagram.com/tacoselpastorqro" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF] font-semibold hover:opacity-90 transition">Instagram</a>
+          <a href="https://www.facebook.com/tacoselpastorqueretaro" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-[#1877F2] font-semibold hover:opacity-90 transition">Facebook</a>
+        </div>
+        <p class="mt-3 text-crema/50">#Querétaro #Juriquilla #DondeComerEnQro #TacosQro #ComercioLocalQro</p>
+      </div>
+      <div>
+        <p class="font-semibold text-crema">Pide también en</p>
+        <div class="mt-3 flex gap-3">
+          <a href="#" data-enlace="rappi" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-[#FF441F] text-white font-semibold">Rappi</a>
+          <a href="#" data-enlace="ubereats" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-[#06C167] text-carbon font-semibold">Uber Eats</a>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-xs text-crema/40 pb-8">© <span id="anio"></span> Tacos El Pastor Queretano · Sitio desarrollado por Hookd Agencia · Querétaro, México</p>
+  </footer>
+
+  <!-- ===================== BOTÓN FLOTANTE WHATSAPP ===================== -->
+  <a href="#" data-whatsapp="Hola, quiero hacer un pedido en Tacos El Pastor Queretano 🌮" aria-label="Escríbenos por WhatsApp"
+     class="fixed bottom-5 left-5 z-40 w-14 h-14 rounded-full bg-[#25D366] text-carbon grid place-items-center shadow-xl shadow-black/40 hover:scale-110 transition-transform duration-300">
+    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0z"/></svg>
+  </a>
+
+  <!-- ===================== BARRA DE CARRITO MÓVIL ===================== -->
+  <button id="barra-carrito-movil" class="sm:hidden fixed bottom-5 right-5 left-24 z-40 bg-pina text-carbon rounded-full px-5 py-3.5 font-bold shadow-xl shadow-black/40 flex justify-between items-center translate-y-28 transition-transform duration-300">
+    <span>🛒 Ver pedido (<span id="movil-cantidad">0</span>)</span><span id="movil-total">$0</span>
+  </button>
+
+  <!-- ===================== CARRITO DESLIZABLE ===================== -->
+  <div id="fondo-carrito" class="fixed inset-0 z-[60] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <aside id="carrito" class="fixed top-0 right-0 z-[70] h-full w-full max-w-md bg-carbon border-l border-white/10 shadow-2xl translate-x-full transition-transform duration-500 ease-out flex flex-col" aria-label="Carrito de compras">
+    <div class="flex items-center justify-between px-6 h-16 border-b border-white/10">
+      <h2 class="font-display text-3xl tracking-wide">Tu pedido</h2>
+      <button id="btn-cerrar-carrito" aria-label="Cerrar carrito" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 grid place-items-center text-xl">✕</button>
+    </div>
+
+    <!-- Progreso de envío gratis -->
+    <div class="px-6 py-4 border-b border-white/10">
+      <p id="texto-envio" class="text-sm"></p>
+      <div class="mt-2 h-2.5 rounded-full bg-white/10 overflow-hidden">
+        <div id="barra-envio" class="h-full rounded-full bg-gradient-to-r from-salsa to-pina transition-all duration-700" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Paso 1: productos -->
+    <div id="paso-productos" class="flex-1 overflow-y-auto px-6 py-4">
+      <ul id="lista-carrito" class="space-y-4"></ul>
+      <div id="carrito-vacio" class="text-center py-16">
+        <p class="text-6xl">🌮</p>
+        <p class="mt-4 font-semibold">Tu carrito está vacío</p>
+        <p class="text-sm text-crema/60">Agrega unos tacos, que el trompo no espera.</p>
+        <button id="btn-ir-menu" class="mt-6 bg-salsa px-6 py-2.5 rounded-full font-semibold">Ver menú</button>
+      </div>
+    </div>
+
+    <!-- Paso 2: datos de entrega -->
+    <form id="paso-datos" class="hidden flex-1 overflow-y-auto px-6 py-4 space-y-4" novalidate>
+      <button type="button" id="btn-regresar" class="text-sm text-pina font-semibold">← Regresar al pedido</button>
+      <div>
+        <label for="nombre" class="block text-sm font-semibold mb-1">Nombre</label>
+        <input id="nombre" name="nombre" required minlength="2" placeholder="¿A nombre de quién?" class="w-full bg-carbon-soft border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-pina transition-colors" />
+        <p class="error text-xs text-salsa-light mt-1 hidden">Escribe tu nombre.</p>
+      </div>
+      <div>
+        <label for="telefono" class="block text-sm font-semibold mb-1">Teléfono (10 dígitos)</label>
+        <input id="telefono" name="telefono" type="tel" inputmode="numeric" required pattern="[0-9]{10}" maxlength="10" placeholder="442 123 4567" class="w-full bg-carbon-soft border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-pina transition-colors" />
+        <p class="error text-xs text-salsa-light mt-1 hidden">Escribe un teléfono de 10 dígitos.</p>
+      </div>
+      <fieldset>
+        <legend class="block text-sm font-semibold mb-2">¿Cómo lo quieres?</legend>
+        <div class="grid grid-cols-2 gap-2">
+          <label class="cursor-pointer"><input type="radio" name="entrega" value="Recoger en el local" class="peer sr-only" checked /><span class="block text-center rounded-xl border border-white/10 px-3 py-3 peer-checked:border-pina peer-checked:bg-pina/10 transition">🏃 Paso por él</span></label>
+          <label class="cursor-pointer"><input type="radio" name="entrega" value="A domicilio" class="peer sr-only" /><span class="block text-center rounded-xl border border-white/10 px-3 py-3 peer-checked:border-pina peer-checked:bg-pina/10 transition">🛵 A domicilio</span></label>
+        </div>
+      </fieldset>
+      <div id="campos-domicilio" class="hidden space-y-4">
+        <div>
+          <label for="zona" class="block text-sm font-semibold mb-1">Zona</label>
+          <select id="zona" name="zona" class="w-full bg-carbon-soft border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-pina">
+            <option>Juriquilla</option><option>Jurica</option><option>Zibatá</option><option>El Refugio</option><option>Real de Juriquilla</option>
+          </select>
+        </div>
+        <div>
+          <label for="direccion" class="block text-sm font-semibold mb-1">Dirección</label>
+          <textarea id="direccion" name="direccion" rows="2" minlength="8" placeholder="Calle, número, fraccionamiento y referencia" class="w-full bg-carbon-soft border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-pina transition-colors"></textarea>
+          <p class="error text-xs text-salsa-light mt-1 hidden">Escribe tu dirección completa.</p>
+        </div>
+      </div>
+      <fieldset>
+        <legend class="block text-sm font-semibold mb-2">Forma de pago</legend>
+        <select id="pago" name="pago" class="w-full bg-carbon-soft border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-pina">
+          <option>Efectivo</option>
+          <option>Tarjeta (terminal al entregar)</option>
+          <option>Mercado Pago (liga de pago por WhatsApp)</option>
+        </select>
+        <p class="mt-2 text-xs text-crema/50">🔒 No pedimos ni guardamos datos de tarjeta en este sitio.</p>
+      </fieldset>
+      <div>
+        <label for="notas" class="block text-sm font-semibold mb-1">Notas (opcional)</label>
+        <input id="notas" name="notas" placeholder="Sin cebolla, salsa aparte…" class="w-full bg-carbon-soft border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-pina transition-colors" />
+      </div>
+    </form>
+
+    <!-- Totales -->
+    <div id="pie-carrito" class="hidden border-t border-white/10 px-6 py-5 space-y-2 bg-carbon-soft">
+      <div class="flex justify-between text-sm text-crema/70"><span>Subtotal</span><span id="subtotal">$0</span></div>
+      <div class="flex justify-between text-sm text-crema/70"><span>Envío</span><span id="costo-envio">$0</span></div>
+      <div class="flex justify-between text-lg font-bold"><span>Total</span><span id="total">$0</span></div>
+      <button id="btn-continuar" class="w-full mt-2 bg-pina text-carbon py-3.5 rounded-full font-bold text-lg hover:brightness-105 transition flex items-center justify-center gap-2">
+        <span id="texto-continuar">Continuar</span>
+        <span id="spinner" class="hidden w-5 h-5 border-2 border-carbon border-t-transparent rounded-full animate-spin"></span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===================== VISTA RÁPIDA ===================== -->
+  <div id="fondo-modal" class="fixed inset-0 z-[60] bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 grid place-items-center p-4">
+    <div id="modal" class="bg-carbon border border-white/10 rounded-3xl max-w-lg w-full overflow-hidden scale-95 transition-transform duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-titulo"></div>
+  </div>
+
+  <!-- ===================== TOAST ===================== -->
+  <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[90] bg-crema text-carbon px-5 py-3 rounded-full font-semibold shadow-2xl opacity-0 -translate-y-4 pointer-events-none transition-all duration-300"></div>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    /* =========================================================
+       CONFIGURACIÓN DEL NEGOCIO
+       La agencia debe reemplazar estos datos con los reales del cliente.
+       ========================================================= */
+    const CONFIG = {
+      whatsapp: '524420000000',          // Número de WhatsApp Business (52 + 10 dígitos). PENDIENTE: confirmar con el cliente.
+      envioGratisDesde: 350,             // MXN
+      costoEnvio: 35,                    // MXN
+      enlaces: {
+        maps: 'https://www.google.com/maps/search/?api=1&query=Tacos+El+Pastor+Queretano+Juriquilla',
+        rappi: 'https://www.rappi.com.mx/restaurantes',   // PENDIENTE: enlace directo de la tienda en Rappi
+        ubereats: 'https://www.ubereats.com/mx'           // PENDIENTE: enlace directo de la tienda en Uber Eats
+      }
+    };
+
+    // Productos estrella del brief (⭐) + menú complementario sugerido por la agencia
+    const PRODUCTOS = [
+      { id: 'pastor-5', nombre: 'Orden de Tacos al Pastor (5 pzs)', precio: 110, categoria: 'tacos', estrella: true, emoji: '🌮',
+        descripcion: 'Pastor marinado 24 h al trompo, con piña asada, cilantro, cebolla y salsas de la casa.', etiqueta: 'El más pedido' },
+      { id: 'gringa-gouda', nombre: 'Gringa Especial con Queso Gouda', precio: 85, categoria: 'especialidades', estrella: true, emoji: '🧀',
+        descripcion: 'Tortilla de harina, pastor jugoso y queso gouda gratinado. Para los que saben.', etiqueta: 'Favorita' },
+      { id: 'horchata-1l', nombre: 'Agua de Horchata Artesanal 1L', precio: 45, categoria: 'bebidas', estrella: true, emoji: '🥛',
+        descripcion: 'Hecha en casa con arroz, canela y un toque de vainilla. 2x1 en fin de semana.', etiqueta: '2x1 fin de semana' },
+      { id: 'campechanos', nombre: 'Orden de Campechanos (5 pzs)', precio: 115, categoria: 'tacos', emoji: '🔥',
+        descripcion: 'Suadero y longaniza dorados en la plancha, con cebolla asada.' },
+      { id: 'suadero', nombre: 'Orden de Tacos de Suadero (5 pzs)', precio: 105, categoria: 'tacos', emoji: '🥩',
+        descripcion: 'Suadero suavecito confitado, servido con limón y salsa verde.' },
+      { id: 'volcan', nombre: 'Volcán de Pastor (2 pzs)', precio: 70, categoria: 'especialidades', emoji: '🌋',
+        descripcion: 'Tostada crujiente con queso derretido, pastor y piña. Ideal para botanear.' },
+      { id: 'jamaica-1l', nombre: 'Agua de Jamaica 1L', precio: 45, categoria: 'bebidas', emoji: '🌺',
+        descripcion: 'Natural, fresquecita y poco dulce.' },
+      { id: 'refresco', nombre: 'Refresco de vidrio 355 ml', precio: 30, categoria: 'bebidas', emoji: '🥤',
+        descripcion: 'Coca-Cola, Sidral Mundet, Manzanita o Fanta.' },
+      { id: 'combo-familiar', nombre: 'Combo Familiar Fin de Semana', precio: 425, precioAntes: 515, categoria: 'combos', emoji: '🎉',
+        descripcion: '3 órdenes de pastor, 1 gringa especial y 2 L de horchata. Alcanza para 4.', etiqueta: 'Ahorra $90' },
+      { id: 'combo-pareja', nombre: 'Combo Pareja', precio: 210, precioAntes: 240, categoria: 'combos', emoji: '💑',
+        descripcion: '1 orden de pastor, 1 gringa especial y 1 L de horchata para compartir.', etiqueta: 'Ahorra $30' }
+    ];
+
+    /* ===================== UTILIDADES ===================== */
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+    const pesos = n => '$' + n.toLocaleString('es-MX');
+    const enlaceWhatsApp = texto => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+
+    let carrito = [];
+    try { carrito = JSON.parse(localStorage.getItem('carrito-pastor') || '[]'); } catch (e) { carrito = []; }
+    const guardar = () => { try { localStorage.setItem('carrito-pastor', JSON.stringify(carrito)); } catch (e) {} };
+
+    /* ===================== ENLACES EXTERNOS ===================== */
+    $$('[data-whatsapp]').forEach(a => { a.href = enlaceWhatsApp(a.dataset.whatsapp); a.target = '_blank'; a.rel = 'noopener'; });
+    $$('[data-enlace]').forEach(a => { a.href = CONFIG.enlaces[a.dataset.enlace]; });
+    $('#anio').textContent = new Date().getFullYear();
+
+    /* ===================== CATÁLOGO ===================== */
+    function tarjetaProducto(p) {
+      return `
+        <article class="producto group bg-carbon-soft border border-white/5 rounded-3xl overflow-hidden hover:border-pina/40 hover:-translate-y-1 hover:shadow-2xl hover:shadow-salsa/10 transition-all duration-300" data-categoria="${p.categoria}" data-aos="fade-up">
+          <button class="vista-rapida relative block w-full h-48 bg-gradient-to-br from-salsa/80 via-salsa-dark to-carbon overflow-hidden" data-id="${p.id}" aria-label="Ver detalle de ${p.nombre}">
+            <span class="absolute inset-0 patron-papel opacity-60"></span>
+            <span class="relative grid place-items-center h-full text-7xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">${p.emoji}</span>
+            ${p.etiqueta ? `<span class="absolute top-4 left-4 bg-pina text-carbon text-xs font-bold px-3 py-1 rounded-full">${p.estrella ? '⭐ ' : ''}${p.etiqueta}</span>` : ''}
+            <span class="absolute bottom-3 right-3 bg-black/50 text-xs px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">Vista rápida</span>
+          </button>
+          <div class="p-6">
+            <h3 class="text-lg font-bold leading-snug">${p.nombre}</h3>
+            <p class="mt-2 text-sm text-crema/65 line-clamp-2">${p.descripcion}</p>
+            <div class="mt-5 flex items-center justify-between">
+              <p><span class="font-display text-3xl text-pina">${pesos(p.precio)}</span>
+                ${p.precioAntes ? `<span class="ml-1 text-sm line-through text-crema/40">${pesos(p.precioAntes)}</span>` : ''}
+                <span class="text-xs text-crema/50">MXN</span></p>
+              <button class="agregar inline-flex items-center gap-1 bg-salsa hover:bg-salsa-dark px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-salsa/40 active:scale-95" data-agregar="${p.id}">
+                + Agregar
+              </button>
+            </div>
+          </div>
+        </article>`;
+    }
+    $('#grid-productos').innerHTML = PRODUCTOS.map(tarjetaProducto).join('');
+
+    // Filtros por categoría
+    $$('.filtro').forEach(btn => btn.addEventListener('click', () => {
+      $$('.filtro').forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      const f = btn.dataset.filtro;
+      $$('.producto').forEach(card => {
+        const ver = f === 'todos' || card.dataset.categoria === f;
+        card.style.display = ver ? '' : 'none';
+      });
+      if (window.AOS) AOS.refresh();
+    }));
+
+    /* ===================== VISTA RÁPIDA ===================== */
+    function abrirModal(id) {
+      const p = PRODUCTOS.find(x => x.id === id);
+      let cantidad = 1;
+      $('#modal').innerHTML = `
+        <div class="relative h-56 bg-gradient-to-br from-salsa via-salsa-dark to-carbon grid place-items-center text-8xl">
+          <span class="absolute inset-0 patron-papel opacity-60"></span><span class="relative animate-flotar">${p.emoji}</span>
+          <button class="cerrar-modal absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 grid place-items-center" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="p-7">
+          ${p.etiqueta ? `<span class="inline-block bg-pina text-carbon text-xs font-bold px-3 py-1 rounded-full">${p.etiqueta}</span>` : ''}
+          <h3 id="modal-titulo" class="mt-3 text-2xl font-bold">${p.nombre}</h3>
+          <p class="mt-2 text-crema/70">${p.descripcion}</p>
+          <div class="mt-6 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 bg-white/5 rounded-full p-1">
+              <button class="menos w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-lg" aria-label="Menos">−</button>
+              <span class="cantidad-modal w-6 text-center font-bold">1</span>
+              <button class="mas w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-lg" aria-label="Más">+</button>
+            </div>
+            <button class="agregar-modal flex-1 bg-pina text-carbon py-3 rounded-full font-bold hover:brightness-105 transition">Agregar · <span class="precio-modal">${pesos(p.precio)}</span></button>
+          </div>
+        </div>`;
+      const actualizar = () => { $('.cantidad-modal').textContent = cantidad; $('.precio-modal').textContent = pesos(p.precio * cantidad); };
+      $('.menos', $('#modal')).onclick = () => { cantidad = Math.max(1, cantidad - 1); actualizar(); };
+      $('.mas', $('#modal')).onclick = () => { cantidad = Math.min(20, cantidad + 1); actualizar(); };
+      $('.agregar-modal').onclick = e => { agregar(p.id, cantidad, e.currentTarget); cerrarModal(); };
+      $('.cerrar-modal').onclick = cerrarModal;
+      $('#fondo-modal').classList.add('abierto');
+      $('#modal').classList.replace('scale-95', 'scale-100');
+    }
+    function cerrarModal() {
+      $('#fondo-modal').classList.remove('abierto');
+      $('#modal').classList.replace('scale-100', 'scale-95');
+    }
+    $('#fondo-modal').addEventListener('click', e => { if (e.target.id === 'fondo-modal') cerrarModal(); });
+
+    /* ===================== CARRITO ===================== */
+    function agregar(id, cantidad = 1, origen) {
+      const p = PRODUCTOS.find(x => x.id === id);
+      const linea = carrito.find(x => x.id === id);
+      linea ? linea.cantidad += cantidad : carrito.push({ id, cantidad });
+      guardar();
+      if (origen) animarVuelo(origen, p.emoji);
+      mostrarToast(`${p.emoji} ${p.nombre} agregado`);
+      setTimeout(renderCarrito, origen ? 650 : 0);
+    }
+
+    function animarVuelo(origen, emoji) {
+      const destino = $('#btn-abrir-carrito').getBoundingClientRect();
+      const inicio = origen.getBoundingClientRect();
+      const el = document.createElement('span');
+      el.className = 'item-volador';
+      el.textContent = emoji;
+      el.style.left = inicio.left + inicio.width / 2 - 16 + 'px';
+      el.style.top = inicio.top - 10 + 'px';
+      document.body.appendChild(el);
+      requestAnimationFrame(() => {
+        el.style.transform = `translate(${destino.left - inicio.left - inicio.width / 2 + 20}px, ${destino.top - inicio.top + 10}px) scale(0.4)`;
+        el.style.opacity = '0.3';
+      });
+      setTimeout(() => el.remove(), 800);
+    }
+
+    function cambiarCantidad(id, delta) {
+      const linea = carrito.find(x => x.id === id);
+      if (!linea) return;
+      linea.cantidad += delta;
+      if (linea.cantidad <= 0) carrito = carrito.filter(x => x.id !== id);
+      guardar(); renderCarrito();
+    }
+
+    function totales() {
+      const subtotal = carrito.reduce((s, l) => s + PRODUCTOS.find(p => p.id === l.id).precio * l.cantidad, 0);
+      const domicilio = $('input[name="entrega"]:checked')?.value === 'A domicilio';
+      const envio = domicilio && subtotal < CONFIG.envioGratisDesde ? CONFIG.costoEnvio : 0;
+      return { subtotal, envio, total: subtotal + envio, piezas: carrito.reduce((s, l) => s + l.cantidad, 0) };
+    }
+
+    function renderCarrito() {
+      const { subtotal, envio, total, piezas } = totales();
+      const lista = $('#lista-carrito');
+      lista.innerHTML = carrito.map(l => {
+        const p = PRODUCTOS.find(x => x.id === l.id);
+        return `
+          <li class="flex gap-4 items-center bg-carbon-soft rounded-2xl p-3">
+            <span class="w-14 h-14 shrink-0 rounded-xl bg-gradient-to-br from-salsa to-salsa-dark grid place-items-center text-3xl">${p.emoji}</span>
+            <div class="flex-1 min-w-0">
+              <p class="font-semibold text-sm leading-snug">${p.nombre}</p>
+              <p class="text-pina text-sm font-bold">${pesos(p.precio * l.cantidad)}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20" data-menos="${p.id}" aria-label="Quitar uno">−</button>
+              <span class="w-5 text-center text-sm font-bold">${l.cantidad}</span>
+              <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20" data-mas="${p.id}" aria-label="Agregar uno">+</button>
+            </div>
+          </li>`;
+      }).join('');
+
+      const vacio = carrito.length === 0;
+      $('#carrito-vacio').classList.toggle('hidden', !vacio);
+      $('#pie-carrito').classList.toggle('hidden', vacio);
+      if (vacio) mostrarPaso('productos');
+
+      // Contadores
+      const contador = $('#contador-carrito');
+      contador.textContent = piezas;
+      contador.classList.toggle('hidden', piezas === 0);
+      contador.classList.remove('animate-brinco'); void contador.offsetWidth; contador.classList.add('animate-brinco');
+      $('#movil-cantidad').textContent = piezas;
+      $('#movil-total').textContent = pesos(total);
+      $('#barra-carrito-movil').classList.toggle('translate-y-28', piezas === 0);
+
+      // Totales y envío gratis
+      $('#subtotal').textContent = pesos(subtotal);
+      $('#costo-envio').textContent = envio ? pesos(envio) : 'Gratis';
+      $('#total').textContent = pesos(total);
+      const falta = CONFIG.envioGratisDesde - subtotal;
+      $('#barra-envio').style.width = Math.min(100, (subtotal / CONFIG.envioGratisDesde) * 100) + '%';
+      $('#texto-envio').innerHTML = falta > 0
+        ? `Te faltan <strong class="text-pina">${pesos(falta)}</strong> para tu envío gratis en Juriquilla 🛵`
+        : `🎉 ¡Ya tienes <strong class="text-pina">envío gratis</strong>!`;
+    }
+
+    $('#lista-carrito').addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.menos) cambiarCantidad(b.dataset.menos, -1);
+      if (b.dataset.mas) cambiarCantidad(b.dataset.mas, 1);
+    });
+
+    document.addEventListener('click', e => {
+      const add = e.target.closest('[data-agregar]');
+      if (add) { agregar(add.dataset.agregar, 1, add); return; }
+      const qv = e.target.closest('.vista-rapida');
+      if (qv) abrirModal(qv.dataset.id);
+    });
+
+    const abrirCarrito = () => { $('#carrito').classList.add('abierto'); $('#fondo-carrito').classList.add('abierto'); document.body.style.overflow = 'hidden'; };
+    const cerrarCarrito = () => { $('#carrito').classList.remove('abierto'); $('#fondo-carrito').classList.remove('abierto'); document.body.style.overflow = ''; };
+    $('#btn-abrir-carrito').onclick = abrirCarrito;
+    $('#barra-carrito-movil').onclick = abrirCarrito;
+    $('#btn-cerrar-carrito').onclick = cerrarCarrito;
+    $('#fondo-carrito').onclick = cerrarCarrito;
+    $('#btn-ir-menu').onclick = () => { cerrarCarrito(); location.hash = '#menu'; };
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarCarrito(); cerrarModal(); } });
+
+    /* ===================== CHECKOUT ===================== */
+    let paso = 'productos';
+    function mostrarPaso(p) {
+      paso = p;
+      $('#paso-productos').classList.toggle('hidden', p !== 'productos');
+      $('#paso-datos').classList.toggle('hidden', p !== 'datos');
+      $('#texto-continuar').textContent = p === 'productos' ? 'Continuar' : 'Enviar pedido por WhatsApp';
+    }
+    $('#btn-regresar').onclick = () => mostrarPaso('productos');
+
+    $$('input[name="entrega"]').forEach(r => r.addEventListener('change', () => {
+      const domicilio = r.value === 'A domicilio' && r.checked;
+      $('#campos-domicilio').classList.toggle('hidden', !domicilio);
+      $('#direccion').required = domicilio;
+      renderCarrito();
+    }));
+    $('#telefono').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10); });
+
+    // Validación en tiempo real
+    $$('#paso-datos input, #paso-datos textarea').forEach(campo => campo.addEventListener('blur', () => validarCampo(campo)));
+    function validarCampo(campo) {
+      const ok = campo.checkValidity() && (!campo.required || campo.value.trim().length > 0);
+      const err = campo.parentElement.querySelector('.error');
+      if (err) err.classList.toggle('hidden', ok);
+      campo.classList.toggle('border-salsa-light', !ok);
+      return ok;
+    }
+
+    $('#btn-continuar').onclick = () => {
+      if (paso === 'productos') { mostrarPaso('datos'); return; }
+      const campos = ['#nombre', '#telefono'].concat($('#direccion').required ? ['#direccion'] : []).map(s => $(s));
+      const validos = campos.map(validarCampo).every(Boolean);
+      if (!validos) { mostrarToast('⚠️ Revisa los campos marcados'); return; }
+
+      $('#spinner').classList.remove('hidden');
+      const { subtotal, envio, total } = totales();
+      const entrega = $('input[name="entrega"]:checked').value;
+      const lineas = carrito.map(l => {
+        const p = PRODUCTOS.find(x => x.id === l.id);
+        return `• ${l.cantidad} x ${p.nombre} = ${pesos(p.precio * l.cantidad)}`;
+      }).join('\n');
+      const mensaje =
+`¡Hola! Quiero hacer un pedido en Tacos El Pastor Queretano 🌮
+
+${lineas}
+
+Subtotal: ${pesos(subtotal)}
+Envío: ${envio ? pesos(envio) : 'Gratis'}
+*Total: ${pesos(total)} MXN*
+
+👤 ${$('#nombre').value.trim()}
+📞 ${$('#telefono').value}
+🛵 ${entrega}${entrega === 'A domicilio' ? `\n📍 ${$('#zona').value}: ${$('#direccion').value.trim()}` : ''}
+💳 Pago: ${$('#pago').value}${$('#notas').value.trim() ? `\n📝 Notas: ${$('#notas').value.trim()}` : ''}`;
+
+      setTimeout(() => {
+        window.open(enlaceWhatsApp(mensaje), '_blank', 'noopener');
+        $('#spinner').classList.add('hidden');
+        mostrarToast('✅ ¡Pedido listo! Confírmalo en WhatsApp');
+        carrito = []; guardar(); renderCarrito(); cerrarCarrito();
+      }, 600);
+    };
+
+    /* ===================== TOAST ===================== */
+    let tiempoToast;
+    function mostrarToast(texto) {
+      const t = $('#toast');
+      t.textContent = texto;
+      t.classList.remove('opacity-0', '-translate-y-4');
+      clearTimeout(tiempoToast);
+      tiempoToast = setTimeout(() => t.classList.add('opacity-0', '-translate-y-4'), 2200);
+    }
+
+    /* ===================== FAQ ===================== */
+    $$('.faq-boton').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('abierto')));
+
+    /* ===================== MENÚ MÓVIL ===================== */
+    $('#btn-menu-movil').onclick = () => $('#menu-movil').classList.toggle('hidden');
+    $$('#menu-movil a').forEach(a => a.onclick = () => $('#menu-movil').classList.add('hidden'));
+
+    /* ===================== HERO: TEXTO ROTATIVO ===================== */
+    const frases = ['el pastor al trompo', 'la gringa con gouda', 'la horchata de la casa'];
+    let iFrase = 0;
+    setInterval(() => {
+      const el = $('#texto-rotativo');
+      el.style.opacity = 0; el.style.transform = 'translateY(12px)';
+      setTimeout(() => { iFrase = (iFrase + 1) % frases.length; el.textContent = frases[iFrase]; el.style.opacity = 1; el.style.transform = 'translateY(0)'; }, 400);
+    }, 3000);
+
+    /* ===================== CONTADORES ANIMADOS ===================== */
+    const observador = new IntersectionObserver(entradas => entradas.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target, meta = parseFloat(el.dataset.contador), decimales = meta % 1 ? 1 : 0, sufijo = el.dataset.sufijo || '';
+      let inicio = null;
+      const paso = t => {
+        if (!inicio) inicio = t;
+        const p = Math.min((t - inicio) / 1400, 1);
+        el.textContent = (meta * (1 - Math.pow(1 - p, 3))).toFixed(decimales) + sufijo;
+        if (p < 1) requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+      observador.unobserve(el);
+    }), { threshold: 0.6 });
+    $$('[data-contador]').forEach(el => observador.observe(el));
+
+    /* ===================== HORARIO Y PROMO DE FIN DE SEMANA ===================== */
+    function actualizarHorario() {
+      const ahora = new Date(), dia = ahora.getDay(), h = ahora.getHours() + ahora.getMinutes() / 60;
+      // 0=Dom ... 6=Sáb. Horario: Mar-Jue 18-24, Vie-Sáb 13-26 (2 am), Dom 13-23. Lunes cerrado.
+      const madrugadaFinde = (dia === 6 || dia === 0) && h < 2;
+      const abierto = madrugadaFinde ||
+        (dia >= 2 && dia <= 4 && h >= 18) ||
+        ((dia === 5 || dia === 6) && h >= 13) ||
+        (dia === 0 && h >= 13 && h < 23);
+      $('#estado-abierto').textContent = abierto ? 'Abierto ahora · Juriquilla, QRO' : 'Cerrado ahora · Pide para más tarde';
+
+      // Cuenta regresiva: si es Vie-Dom muestra lo que falta para que termine, si no, lo que falta para el viernes 13:00
+      const objetivo = new Date(ahora);
+      const enPromo = dia === 5 || dia === 6 || dia === 0;
+      if (enPromo) {
+        objetivo.setDate(ahora.getDate() + (dia === 0 ? 0 : 7 - dia));
+        objetivo.setHours(23, 0, 0, 0);
+        $('#texto-cuenta').textContent = 'para que termine la promo';
+      } else {
+        objetivo.setDate(ahora.getDate() + (5 - dia));
+        objetivo.setHours(13, 0, 0, 0);
+        $('#texto-cuenta').textContent = 'para que arranque la promo';
+      }
+      const dif = Math.max(0, objetivo - ahora);
+      const hh = Math.floor(dif / 36e5), mm = Math.floor(dif % 36e5 / 6e4), ss = Math.floor(dif % 6e4 / 1e3);
+      $('#cuenta-regresiva').textContent = [hh, mm, ss].map(n => String(n).padStart(2, '0')).join(':');
+    }
+    actualizarHorario();
+    setInterval(actualizarHorario, 1000);
+
+    /* ===================== NAV AL HACER SCROLL ===================== */
+    window.addEventListener('scroll', () => {
+      $('#nav').classList.toggle('shadow-2xl', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ===================== INICIO ===================== */
+    renderCarrito();
+    window.addEventListener('load', () => {
+      if (window.AOS) AOS.init({ duration: 800, once: true, offset: 60, easing: 'ease-out-cubic' });
+      const loader = $('#loader');
+      loader.style.opacity = 0;
+      setTimeout(() => loader.remove(), 500);
+    });
+  </script>
+</body>
+</html>
